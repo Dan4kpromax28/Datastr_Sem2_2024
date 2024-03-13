@@ -16,4 +16,21 @@ public class MyLinkedList<T> {
     public int howManyElements(){
         return counter;
     }
+
+    public void add(T element) throws Exception {
+        if (element == null ) throw new Exception("Problems with elements");
+
+        if(isEmpty()){
+            MyListNode newNode = new MyListNode(element);
+            first = newNode;
+            last = newNode;
+        }
+        else{
+            MyListNode newNode = new MyListNode(element);
+            newNode.setPrevious(last);
+            last.setNext(newNode);
+            last = newNode;
+            counter++;
+        }
+    }
 }

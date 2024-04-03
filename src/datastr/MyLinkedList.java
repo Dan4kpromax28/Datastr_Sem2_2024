@@ -7,26 +7,25 @@ public class MyLinkedList<T> {
 
     // pec moklusejuma ir bezargumenta konstruktors -> MyLinked List
 
-    public boolean isEmpty(){
-        return (counter==0);
+    public boolean isEmpty() {
+        return (counter == 0);
     }
 
     //TODO padomat un izveidot isFull() funkciju
 
-    public int howManyElements(){
+    public int howManyElements() {
         return counter;
     }
 
     public void add(T element) throws Exception {
-        if (element == null ) throw new Exception("Problems with elements");
+        if (element == null) throw new Exception("Problems with elements");
 
-        if(isEmpty()){
+        if (isEmpty()) {
             MyListNode newNode = new MyListNode(element);
             first = newNode;
             last = newNode;
             counter++;
-        }
-        else{
+        } else {
             MyListNode newNode = new MyListNode(element);
             newNode.setPrevious(last);
             last.setNext(newNode);
@@ -35,13 +34,63 @@ public class MyLinkedList<T> {
         }
     }
 
-    public void print() throws Exception{
-        if(isEmpty()) throw new Exception("List is empty");
-
+    public void print() throws Exception {
+        if (isEmpty()) throw new Exception("List is empty");
         MyListNode temp = first;
 
-        for (int i = 0; i < counter; i++){
+        for (int i = 0; i < counter; i++) {
             System.out.println();
         }
+    }
+
+    public void add(T element, int position) throws Exception {
+        if (element == null) throw new Exception("Problems with element");
+        //1 parbaude uz position
+        if (position < 0 || position > counter) throw new Exception("Problems with position input");
+        //ja saraksts ir tukss c;
+        if (isEmpty() && position == 0) {
+            add(element);
+            //TODO tas pats ka funkcija
+            /*MyListNode newNode = new MyListNode(element);
+            first = newNode;
+            last = newNode;
+            counter++;*/
+        } else if (isEmpty() && position != 0) {
+            throw new Exception("Problems with position");
+        } else if (position == 0) {
+            MyListNode newNode = new MyListNode(element);
+            newNode.setNext(first);
+            first.setPrevious(last);
+            first = newNode;
+            counter++;
+        }
+        //2 pievienot elementu prieksa
+        else if (position == counter) {
+            add(element);
+            /*MyListNode newNode = new MyListNode(element);
+            newNode.setPrevious(last);
+            last.setNext(first);
+            last = newNode;
+            counter++; */
+        } else {
+            MyListNode temp = first;
+            for (int i = 0; i < position; i++) {
+                first = first.getNext();
+            }
+
+            MyListNode rightNode = temp;
+            MyListNode leftNode = temp.getPrevious();
+            MyListNode newNode = new MyListNode(element);
+
+            newNode.setNext(rightNode);
+            newNode.setPrevious(leftNode);
+            leftNode.setNext(newNode);
+
+            counter++;
+        }
+
+        //3 pielikt elementu beigas
+
+        //4 pielikt elementu pa vidu
     }
 }

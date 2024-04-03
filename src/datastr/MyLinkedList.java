@@ -75,7 +75,7 @@ public class MyLinkedList<T> {
         } else {
             MyListNode temp = first;
             for (int i = 0; i < position; i++) {
-                first = first.getNext();
+                temp = temp.getNext();
             }
 
             MyListNode rightNode = temp;

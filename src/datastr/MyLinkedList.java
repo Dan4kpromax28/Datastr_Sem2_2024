@@ -93,4 +93,44 @@ public class MyLinkedList<T> {
 
         //4 pielikt elementu pa vidu
     }
+
+    //delete
+    //funkcijas deklaracija
+    //parbaude uz isEmpty
+    //parbaude uz position
+
+    // 1. ja dzesam pirmo elementu
+    // 2. ja dzesam pedejo elementu
+    // 3. ja dzesam kadu pa vidu
+
+    public void delete(int position) throws Exception {
+        if (isEmpty()) throw new Exception("There is no element to delete");
+        if (position < 0 || position > counter) throw new Exception("Incorrect position input");
+        if (position == 0) {
+            MyListNode theNewFirst = first.getNext();
+            theNewFirst.setPrevious(null);
+            first = theNewFirst;
+            counter--;
+            System.gc();
+        } else if (position == counter) {
+            MyListNode theNewLast = last.getPrevious();
+            theNewLast.setNext(null);
+            last = theNewLast;
+            counter--;
+            System.gc();
+        } else {
+            MyListNode temp = first;
+            for (int i = 0; i < position; i++){
+                temp = temp.getNext();
+            }
+            MyListNode rightNode = temp;
+            MyListNode leftNode = temp.getPrevious();
+
+
+        }
+
+
+    }
+
+
 }

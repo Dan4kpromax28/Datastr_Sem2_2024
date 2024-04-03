@@ -24,6 +24,7 @@ public class MyLinkedList<T> {
             MyListNode newNode = new MyListNode(element);
             first = newNode;
             last = newNode;
+            counter++;
         }
         else{
             MyListNode newNode = new MyListNode(element);
@@ -31,6 +32,16 @@ public class MyLinkedList<T> {
             last.setNext(newNode);
             last = newNode;
             counter++;
+        }
+    }
+
+    public void print() throws Exception{
+        if(isEmpty()) throw new Exception("List is empty");
+
+        MyListNode temp = first;
+
+        for (int i = 0; i < counter; i++){
+            System.out.println();
         }
     }
 }
